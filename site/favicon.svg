@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .s { fill: #16202B; } .a { fill: #2F6F73; }
+    @media (prefers-color-scheme: dark) { .s { fill: #EEF0F3; } .a { fill: #5FAFAA; } }
+  </style>
+  <rect class="s" x="22" y="10" width="5" height="6" rx="1"/>
+  <rect class="s" x="29.5" y="10" width="5" height="6" rx="1"/>
+  <rect class="s" x="37" y="10" width="5" height="6" rx="1"/>
+  <rect class="s" x="22" y="18" width="20" height="8" rx="1.5"/>
+  <rect class="s" x="22" y="28" width="20" height="8" rx="1.5"/>
+  <rect class="a" x="22" y="38" width="20" height="8" rx="1.5"/>
+  <path class="s" d="M2 58 C16 50 24 48 32 48 C40 48 48 50 62 58 Z"/>
+</svg>

@@ -1,0 +1,436 @@
+/* Turmberg Software – turmbergsoftware.de
+   Fonts are self-hosted on purpose: loading them from Google's servers
+   would send visitors' IP addresses to Google (GDPR). */
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('fonts/dm-sans-latin-wght-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/space-grotesk-latin-wght-normal.woff2') format('woff2');
+}
+
+:root {
+  /* Brand colors */
+  --schiefer: #16202B;
+  --pfinz: #2F6F73;
+  --pfinz-dunkel: #245E63;
+  --pfinz-hell: #5FAFAA;
+  --pfinz-hell-hover: #6FBDB7;
+  --nebel: #EEF0F3;
+
+  /* Neutrals */
+  --seite: #FFFFFF;
+  --grau: #5B6673;
+  --linie: #E1E5EA;
+  --rand: #D5DAE0;
+  --hell: #F4F5F7;
+  --hell-gedaempft: #B9C2CC;
+
+  --font: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-marke: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--seite);
+  color: var(--schiefer);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--schiefer); }
+a:hover { color: var(--pfinz); }
+a:focus-visible {
+  outline: 2px solid var(--pfinz);
+  outline-offset: 3px;
+}
+
+/* ---------- Logo mark (used in header and hero tower) ---------- */
+
+.mark rect,
+.mark path { fill: var(--schiefer); }
+.mark .akzent { fill: var(--pfinz); }
+
+/* ---------- Header ---------- */
+
+.site-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--schiefer);
+  text-decoration: none;
+}
+.brand:hover { color: var(--schiefer); }
+.brand .mark {
+  flex: none;
+  width: 36px;
+  height: 36px;
+}
+
+.wordmark {
+  font-family: var(--font-marke);
+  font-size: 21px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.wordmark b { font-weight: 700; }
+.wordmark span { font-weight: 400; color: var(--grau); }
+
+/* ---------- Buttons ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid var(--rand);
+  border-radius: 999px;
+  color: var(--schiefer);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.pill:hover {
+  background: var(--nebel);
+  color: var(--schiefer);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: var(--pfinz);
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--pfinz-dunkel);
+  color: #FFFFFF;
+}
+
+.button--hell {
+  background: var(--pfinz-hell);
+  color: var(--schiefer);
+}
+.button--hell:hover {
+  background: var(--pfinz-hell-hover);
+  color: var(--schiefer);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 20px 0;
+}
+
+/* overflow: hidden clips the hill to the rounded corners, and the bottom
+   padding is 0 so the horizon sits flush on the card's bottom edge. */
+.hero__card {
+  overflow: hidden;
+  background: var(--nebel);
+  border-radius: 32px;
+  padding: clamp(64px, 9vw, 112px) 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 760px;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(2.5rem, 6.4vw, 5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.hero__lead {
+  margin: 0;
+  max-width: 34em;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--grau);
+  text-wrap: pretty;
+}
+
+.hero .button { margin-top: 16px; }
+
+/* The horizon spans the full card width: the negative side margins
+   cancel the card's 24px side padding. */
+.horizon {
+  position: relative;
+  align-self: stretch;
+  height: 180px;
+  margin: 56px -24px 0;
+}
+
+/* The hill is filled with the PAGE color, so it reads as the page rising
+   into the card. preserveAspectRatio="none" (in the markup) lets it stretch;
+   display: block removes the inline-SVG baseline gap under the hill. */
+.horizon__hill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.horizon__hill path { fill: var(--seite); }
+
+/* Separate SVG so the tower never stretches with the hill. The hill's peak
+   is 112px from the top; 36px + 72px = 108px leaves the logo's small gap. */
+.horizon__tower {
+  position: absolute;
+  left: 50%;
+  top: 36px;
+  width: 40px;
+  height: 72px;
+  margin-left: -20px;
+  display: block;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(80px, 10vw, 128px) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.section__title {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.prinzipien {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 40px;
+}
+
+.prinzip {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 28px;
+  border-top: 1px solid var(--linie);
+}
+
+.prinzip h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.prinzip p {
+  margin: 0;
+  max-width: 32em;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--grau);
+  text-wrap: pretty;
+}
+
+/* ---------- Contact ---------- */
+
+.kontakt {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  scroll-margin-top: 24px;
+}
+
+.kontakt__card {
+  background: var(--schiefer);
+  color: var(--nebel);
+  border-radius: 32px;
+  padding: clamp(40px, 7vw, 88px) clamp(24px, 6vw, 80px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+  gap: 40px;
+  align-items: end;
+}
+
+.kontakt a:focus-visible { outline-color: var(--pfinz-hell); }
+
+.kontakt__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kontakt__text .section__title { color: var(--hell); }
+
+.kontakt__text p {
+  margin: 0;
+  max-width: 28em;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--hell-gedaempft);
+}
+
+.kontakt__aktionen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.kontakt__adresse {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kontakt__mail {
+  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--pfinz-hell);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.kontakt__mail:hover {
+  color: var(--pfinz-hell);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.kontakt__ort {
+  font-size: 16px;
+  color: var(--hell-gedaempft);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  font-size: 14px;
+  color: var(--grau);
+}
+
+.site-footer p { margin: 0; }
+
+.site-footer nav {
+  display: flex;
+  gap: 24px;
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--grau);
+  text-decoration: none;
+}
+.site-footer a:hover,
+.site-footer a[aria-current="page"] { color: var(--schiefer); }
+
+/* ---------- Legal pages (Impressum, Datenschutz) ---------- */
+
+.rechtliches {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 96px) 24px clamp(64px, 10vw, 128px);
+}
+
+.rechtliches h1 {
+  margin: 0 0 40px;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.rechtliches h2 {
+  margin: 40px 0 12px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.rechtliches p {
+  margin: 0 0 16px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.rechtliches a { overflow-wrap: anywhere; }
+
+.rechtliches .stand {
+  margin-top: 48px;
+  font-size: 15px;
+  color: var(--grau);
+}

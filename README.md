@@ -84,8 +84,10 @@ Both legal pages are templates, not legal advice. Have the final text checked.
   stylesheet scales up and blurs. Clouds, fields and towns are generated from noise
   and laid out in perspective, lights are drawn as lens bokeh, and `.aussicht__korn`
   adds film grain; together that is what makes it read as out-of-focus footage. The
-  light follows the real position of the sun over the Turmberg. To see another time
-  of day, add `?zeit=HH:MM` to the address, e.g. `http://localhost:8000/?zeit=19:35`.
+  view shows one fixed moment, 18:52 on an early October evening, set as `MOMENT` at
+  the top of the script; set it to `null` and the light follows the real position of
+  the sun over the Turmberg. To see another time of day, add `?time=HH:MM` to the
+  address, e.g. `http://localhost:8000/?time=19:35`.
   The colors per sun elevation are in `SKIES` at the top of the script; blur and
   grain strength are `filter: blur()` at `.aussicht` and `opacity` at
   `.aussicht__korn`.

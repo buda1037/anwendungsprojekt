@@ -2,15 +2,18 @@
 
    Looking west over Karlsruhe and the Rhine plain: sky and clouds, the hills
    on the horizon, the plain with its towns, foliage in the foreground. The
-   light follows the real position of the sun over the Turmberg, so the page
-   shows a day sky by day, a sunset in the evening and the lit city at night.
+   light is that of one fixed moment, shortly before sunset on an evening in
+   early October (MOMENT below), worked out from where the sun then stands
+   over the Turmberg. The view can follow the real time of day instead: a
+   day sky by day, a sunset in the evening, the lit city at night.
 
    Nothing here is a photo or a video. To still read as out-of-focus footage
    rather than a drawing, the view avoids drawn shapes: clouds, fields and
    towns come from noise and are laid out in perspective, lights are lens
    bokeh, and the stylesheet blurs the result and puts film grain on top.
 
-   Preview any time of day with ?zeit=HH:MM in the address, e.g. ?zeit=21:30.
+   Preview any other time of that day with ?time=HH:MM in the address, e.g.
+   ?time=21:30.
    Visitors who prefer reduced motion get the same view as a still. */
 
 (() => {
@@ -24,9 +27,12 @@
   const BLEED = 24; // px the canvases extend past the card, so the blur has no soft edge
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const preview = /^(\d{1,2}):(\d{2})$/.exec(new URLSearchParams(location.search).get('zeit') || '');
+  // The moment the view shows: the light just before sunset, which suits
+  // it best. Set MOMENT to null and the view follows the real time of day.
+  const MOMENT = '2026-10-02T18:52:00+02:00';
+  const preview = /^(\d{1,2}):(\d{2})$/.exec(new URLSearchParams(location.search).get('time') || '');
   function clock() {
-    const date = new Date();
+    const date = MOMENT ? new Date(MOMENT) : new Date();
     if (preview) date.setHours(+preview[1], +preview[2], 0, 0);
     return date;
   }
@@ -608,13 +614,16 @@
   watcher.observe(card);
   if (text) watcher.observe(text);
 
-  setInterval(() => {
-    sun = sunPosition(clock(), PLACE.lat, PLACE.lon);
-    sky = skyFor(sun.elevation);
-    paintBackdrop();
-    paintFoliage();
-    if (still) draw(now);
-  }, 30000);
+  // Only a view that follows the real time has to keep up with the sun.
+  if (!MOMENT) {
+    setInterval(() => {
+      sun = sunPosition(clock(), PLACE.lat, PLACE.lon);
+      sky = skyFor(sun.elevation);
+      paintBackdrop();
+      paintFoliage();
+      if (still) draw(now);
+    }, 30000);
+  }
 
   if (!still) {
     // Every second frame is plenty for something this soft.

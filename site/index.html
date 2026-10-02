@@ -9,83 +9,49 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/aussicht.js" defer></script>
+<!-- Paper planes switched off. Remove this comment to bring them back.
+<script src="assets/flieger.js" defer></script>
+-->
 </head>
 <body>
 
 <header class="site-header">
   <a class="brand" href="./" aria-label="Turmberg Software, Startseite">
     <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
-      <rect x="22" y="10" width="5" height="6" rx="1"/>
-      <rect x="29.5" y="10" width="5" height="6" rx="1"/>
-      <rect x="37" y="10" width="5" height="6" rx="1"/>
-      <rect x="22" y="18" width="20" height="8" rx="1.5"/>
-      <rect x="22" y="28" width="20" height="8" rx="1.5"/>
-      <rect class="akzent" x="22" y="38" width="20" height="8" rx="1.5"/>
-      <path d="M2 58 C16 50 24 48 32 48 C40 48 48 50 62 58 Z"/>
+      <path d="M24 46 V12 H26.25 V16.5 H31.25 V12 H32.75 V16.5 H37.75 V12 H40 V46 M24 22.5 H40 M24 34 H40"/>
+      <path d="M5 58 C17 52 25 50.5 32 50.5 C39 50.5 47 52 59 58"/>
     </svg>
     <span class="wordmark"><b>turmberg</b> <span>software</span></span>
   </a>
-  <a class="pill" href="#kontakt">Kontakt</a>
+  <!-- No targets yet: add an href to each entry once its section exists. -->
+  <nav class="site-nav" aria-label="Hauptnavigation">
+    <a>Leistungen</a>
+    <a>Projekte</a>
+    <a>Team</a>
+    <a>Karriere</a>
+  </nav>
+  <!-- No target yet either: add an href once there is something to log in to. -->
+  <a class="pill">Login</a>
 </header>
 
-<main>
+<main class="start">
 
   <section class="hero" aria-labelledby="hero-titel">
     <div class="hero__card">
       <div class="hero__content">
         <h1 class="hero__title" id="hero-titel">Software mit Weitblick.</h1>
-        <p class="hero__lead">Wir sind ein junges Team aus Karlsruhe-Durlach und bauen Software, die verlässlich läuft, einfach bleibt und Spaß macht.</p>
-        <a class="button" href="mailto:[kontakt]@turmbergsoftware.de">Aufstieg planen</a>
       </div>
 
       <div class="horizon" aria-hidden="true">
         <svg class="horizon__hill" viewBox="0 0 1000 180" preserveAspectRatio="none">
-          <path d="M0 180 C260 160 380 112 500 112 C620 112 740 160 1000 180 Z"/>
+          <path d="M0 190 V180 C260 160 380 112 500 112 C620 112 740 160 1000 180 V190 Z"/>
         </svg>
         <svg class="horizon__tower mark" viewBox="22 10 20 36">
-          <rect x="22" y="10" width="5" height="6" rx="1"/>
-          <rect x="29.5" y="10" width="5" height="6" rx="1"/>
-          <rect x="37" y="10" width="5" height="6" rx="1"/>
-          <rect x="22" y="18" width="20" height="8" rx="1.5"/>
-          <rect x="22" y="28" width="20" height="8" rx="1.5"/>
-          <rect class="akzent" x="22" y="38" width="20" height="8" rx="1.5"/>
+          <path d="M24 46 V12 H27.5 V15 H30.5 V12 H33.5 V15 H36.5 V12 H40 V46 M24 20.5 H40 M24 32 H40"/>
         </svg>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="arbeitsweise" aria-labelledby="arbeitsweise-titel">
-    <h2 class="section__title" id="arbeitsweise-titel">So arbeiten wir.</h2>
-    <div class="prinzipien">
-      <div class="prinzip">
-        <h3>Klar</h3>
-        <p>Saubere Architektur, verständlicher Code und dokumentierte Entscheidungen. Auch in zwei Jahren weiß man noch, warum etwas so gebaut ist.</p>
-      </div>
-      <div class="prinzip">
-        <h3>Schnell</h3>
-        <p>Kurze Iterationen und wöchentliche Abstimmung. Sie sehen früh, was entsteht, und können jederzeit nachsteuern.</p>
-      </div>
-      <div class="prinzip">
-        <h3>Verlässlich</h3>
-        <p>Automatisierte Tests und eine durchgängige Build-Pipeline. Jede Änderung wird geprüft, bevor sie bei Ihnen ankommt.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
-    <div class="kontakt__card">
-      <div class="kontakt__text">
-        <h2 class="section__title" id="kontakt-titel">Sprechen wir über Ihr Projekt.</h2>
-        <p>Erzählen Sie uns kurz, worum es geht. Wir melden uns persönlich bei Ihnen.</p>
-      </div>
-      <div class="kontakt__aktionen">
-        <div class="kontakt__adresse">
-          <a class="kontakt__mail" href="mailto:[kontakt]@turmbergsoftware.de">[kontakt]@turmbergsoftware.de</a>
-          <span class="kontakt__ort">Karlsruhe-Durlach</span>
-        </div>
-        <a class="button button--hell" href="mailto:[kontakt]@turmbergsoftware.de">Projekt anfragen</a>
       </div>
     </div>
   </section>

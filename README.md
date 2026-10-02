@@ -1,6 +1,8 @@
 # turmbergsoftware.de
 
-The website of Turmberg Software: plain HTML and CSS, no framework, no build step.
+The website of Turmberg Software: plain HTML and CSS plus two small scripts, one for
+the view behind the hero text and one for the paper planes. No framework, no
+dependencies, no images or video, no build step.
 Every push to `main` is published to GitHub Pages by `.github/workflows/deploy.yml`.
 
 ## Structure
@@ -13,6 +15,8 @@ site/                    everything in here is published
   favicon.svg / .ico     logo mark; the SVG switches to light colors in dark mode
   apple-touch-icon.png
   assets/style.css       shared styles, brand colors as CSS variables
+  assets/aussicht.js     the view from the Turmberg behind the hero text
+  assets/flieger.js      the paper planes on the landing page
   assets/fonts/          DM Sans + Space Grotesk, self-hosted (SIL OFL 1.1)
 .github/workflows/
   deploy.yml             uploads site/ and deploys it to GitHub Pages
@@ -56,7 +60,7 @@ Every placeholder is written in square brackets. List them with:
 grep -rn '\[' site/*.html
 ```
 
-- `[kontakt]@turmbergsoftware.de`: the real contact address (index, Impressum,
+- `[kontakt]@turmbergsoftware.de`: the real contact address (Impressum and
   Datenschutz).
 - `impressum.html`: address, the representative's name, phone number. The register
   and VAT sections only apply if the company is actually registered. Otherwise
@@ -72,4 +76,21 @@ Both legal pages are templates, not legal advice. Have the final text checked.
 - **Hero hill and tower:** see the comments at `.hero__card` and `.horizon` in
   `assets/style.css`. The hill's fill must equal the page background, and the
   card needs `overflow: hidden` and no bottom padding, or the seamless effect breaks.
+  The hero text is white, so whatever is behind it has to stay dark.
+- **Page width:** `--breite` at the top of `assets/style.css`. It is `none` (full
+  window); set a length to cap and center the page.
+- **The view:** `assets/aussicht.js` paints sky, clouds, hills, the plain with its
+  towns and the foliage in the corners on small canvases that `.aussicht` in the
+  stylesheet scales up and blurs. Clouds, fields and towns are generated from noise
+  and laid out in perspective, lights are drawn as lens bokeh, and `.aussicht__korn`
+  adds film grain; together that is what makes it read as out-of-focus footage. The
+  light follows the real position of the sun over the Turmberg. To see another time
+  of day, add `?zeit=HH:MM` to the address, e.g. `http://localhost:8000/?zeit=19:35`.
+  The colors per sun elevation are in `SKIES` at the top of the script; blur and
+  grain strength are `filter: blur()` at `.aussicht` and `opacity` at
+  `.aussicht__korn`.
+- **Paper planes:** `assets/flieger.js`. How many there are, where they circle, how
+  big and how fast they are is in `LAYOUTS` at the top; the delays and the throw
+  limits are the constants right below. Visitors with reduced motion enabled get no
+  planes.
 - **Header and footer** are repeated in all three HTML files. Change all three.

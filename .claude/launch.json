@@ -4,7 +4,10 @@
     {
       "name": "site",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "-d", "site", "8000"],
+      "runtimeArgs": [
+        "-c",
+        "import functools, http.server\nclass Fresh(http.server.SimpleHTTPRequestHandler):\n    def end_headers(self):\n        self.send_header('Cache-Control', 'no-store')\n        super().end_headers()\nhttp.server.ThreadingHTTPServer(('', 8000), functools.partial(Fresh, directory='site')).serve_forever()"
+      ],
       "port": 8000
     }
   ]

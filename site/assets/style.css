@@ -1,14 +1,6 @@
 /* Turmberg Software – turmbergsoftware.de
-   Fonts are self-hosted on purpose: loading them from Google's servers
+   The font is self-hosted on purpose: loading it from Google's servers
    would send visitors' IP addresses to Google (GDPR). */
-
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 100 1000;
-  font-display: swap;
-  src: url('fonts/dm-sans-latin-wght-normal.woff2') format('woff2');
-}
 
 @font-face {
   font-family: 'Space Grotesk';
@@ -31,10 +23,8 @@
   --grau: #5B6673;
   --rand: #D5DAE0;
 
-  /* Space Grotesk, the more angular of the two, is the site's typeface.
-     DM Sans is kept for long running text, where it reads more easily. */
+  /* Space Grotesk is the site's typeface. */
   --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-lesetext: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Header, hero, sections and footer span the full window.
      Set a length here (e.g. 1440px) to cap and center them instead. */
@@ -693,7 +683,7 @@ a:focus-visible {
   gap: 24px;
 }
 
-/* The notice that the company is made up, on every page. It runs through
+/* The notice that the company is made up. It runs through
    the footer once as a news ticker: a window that clips the text and fades
    it out at both ends. When the ticker is through, a short version of the
    notice appears in its place and stays. Both share one grid cell. */
@@ -787,48 +777,7 @@ a:focus-visible {
   color: var(--grau);
   text-decoration: none;
 }
-.site-footer a:hover,
-.site-footer a[aria-current="page"] { color: var(--schiefer); }
-
-/* ---------- Legal pages (Impressum, Datenschutz) ---------- */
-
-.rechtliches {
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: clamp(48px, 8vw, 96px) 24px clamp(64px, 10vw, 128px);
-}
-
-.rechtliches h1 {
-  margin: 0 0 40px;
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-}
-
-.rechtliches h2 {
-  margin: 40px 0 12px;
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-}
-
-.rechtliches p {
-  margin: 0 0 16px;
-  font-family: var(--font-lesetext);
-  font-size: 17px;
-  line-height: 1.65;
-}
-
-.rechtliches a { overflow-wrap: anywhere; }
-
-.rechtliches .stand {
-  margin-top: 48px;
-  font-size: 15px;
-  color: var(--grau);
-}
+.site-footer a:hover { color: var(--schiefer); }
 
 /* ---------- Paper plane (drawn and moved by assets/flieger.js) ---------- */
 

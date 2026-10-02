@@ -7,28 +7,26 @@ Every push to `main` is published to GitHub Pages by `.github/workflows/deploy.y
 
 Turmberg Software does not exist. The company is made up for a role-play in a study
 project, and the site is a prop for it: the awards are invented, the enquiry form
-sends nothing, and the navigation, the buttons and the legal links lead nowhere. The
-footer of every page says so, first as a news ticker that runs once, then as a short
+sends nothing, and the navigation, the buttons and the legal entries lead nowhere. The
+footer says so, first as a news ticker that runs once, then as a short
 notice that stays. Keep that notice for as long as the site is online.
 
 ## Structure
 
 ```
 site/                    everything in here is published
-  index.html             landing page
-  impressum.html         legal notice (draft, see below)
-  datenschutz.html       privacy policy (draft, see below)
+  index.html             the landing page, the only page
   favicon.svg / .ico     logo mark; the SVG switches to light colors in dark mode
   apple-touch-icon.png
-  assets/style.css       shared styles, brand colors as CSS variables
+  assets/style.css       styles, brand colors as CSS variables
   assets/aussicht.js     the view from the Turmberg behind the hero text
   assets/flieger.js      the paper plane on the landing page
-  assets/fonts/          DM Sans + Space Grotesk, self-hosted (SIL OFL 1.1)
+  assets/fonts/          Space Grotesk, self-hosted (SIL OFL 1.1)
 .github/workflows/
   deploy.yml             uploads site/ and deploys it to GitHub Pages
 ```
 
-The fonts are self-hosted on purpose. Loading them from Google's servers would
+The font is self-hosted on purpose. Loading it from Google's servers would
 transfer visitors' IP addresses to Google, which is a GDPR problem for German sites.
 
 All paths are relative, so the site works both at `turmbergsoftware.de` and at the
@@ -58,25 +56,12 @@ Then open http://localhost:8000.
    on GitHub Pages.
 5. Once the certificate has been issued, enable **Enforce HTTPS**.
 
-## Before going live
+## Impressum and Datenschutz
 
-Every placeholder is written in square brackets. List them with:
-
-```sh
-grep -rn '\[' site/*.html
-```
-
-- `[kontakt]@turmbergsoftware.de`: the real contact address (Impressum and
-  Datenschutz).
-- `impressum.html`: address, the representative's name, phone number. The register
-  and VAT sections only apply if the company is actually registered. Otherwise
-  remove them and drop "GmbH" from the name and the footers.
-- `datenschutz.html`: address, the legal basis for the data transfer to GitHub
-  (USA), and your email provider.
-
-Both legal pages are templates, not legal advice. Have the final text checked.
-Neither page is linked at the moment: the two entries in the footer have no target.
-The note in each footer says how to bring the links back.
+The site has neither. Both existed as drafts with placeholders (`impressum.html`,
+`datenschutz.html`, with their styles and the DM Sans font for their running text)
+and were removed; the last versions are in the repository's history, in commit
+`db0f08f`. The two entries in the footer are labels without a target.
 
 ## Changing things
 
@@ -114,4 +99,3 @@ The note in each footer says how to bring the links back.
 - **The notice in the footer:** `.hinweis` in `assets/style.css`. The ticker's delay
   and duration are in the `animation` of `.hinweis__lauf`; the short notice that
   follows it (`.hinweis__fest`) waits for the sum of the two.
-- **Header and footer** are repeated in all three HTML files. Change all three.

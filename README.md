@@ -1,9 +1,15 @@
 # turmbergsoftware.de
 
 The website of Turmberg Software: plain HTML and CSS plus two small scripts, one for
-the view behind the hero text and one for the paper planes. No framework, no
-dependencies, no images or video, no build step.
+the view behind the hero text and one for the paper planes (currently switched off).
+No framework, no dependencies, no images or video, no build step.
 Every push to `main` is published to GitHub Pages by `.github/workflows/deploy.yml`.
+
+Turmberg Software does not exist. The company is made up for a role-play in a study
+project, and the site is a prop for it: the awards are invented, the enquiry form
+sends nothing, and the navigation, the buttons and the legal links lead nowhere. The
+footer of every page says so, first as a news ticker that runs once, then as a short
+notice that stays. Keep that notice for as long as the site is online.
 
 ## Structure
 
@@ -69,6 +75,8 @@ grep -rn '\[' site/*.html
   (USA), and your email provider.
 
 Both legal pages are templates, not legal advice. Have the final text checked.
+Neither page is linked at the moment: the two entries in the footer have no target.
+The note in each footer says how to bring the links back.
 
 ## Changing things
 
@@ -94,5 +102,13 @@ Both legal pages are templates, not legal advice. Have the final text checked.
 - **Paper planes:** `assets/flieger.js`. How many there are, where they circle, how
   big and how fast they are is in `LAYOUTS` at the top; the delays and the throw
   limits are the constants right below. Visitors with reduced motion enabled get no
-  planes.
+  planes. They are switched off: the script tag in `index.html` is commented out.
+- **Side margin:** `--innen` at the top of `assets/style.css` is how far everything
+  stands in from the left and right edges of the window.
+- **Awards and enquiry form:** both are marked EXPERIMENT in `index.html` and
+  `assets/style.css`. The form floats over the view on the right; the awards show
+  above it only in windows of at least 1280 by 800 pixels.
+- **The notice in the footer:** `.hinweis` in `assets/style.css`. The ticker's delay
+  and duration are in the `animation` of `.hinweis__lauf`; the short notice that
+  follows it (`.hinweis__fest`) waits for the sum of the two.
 - **Header and footer** are repeated in all three HTML files. Change all three.

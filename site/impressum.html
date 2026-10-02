@@ -33,8 +33,12 @@
     <a>Team</a>
     <a>Karriere</a>
   </nav>
-  <!-- No target yet either: add an href once there is something to log in to. -->
-  <a class="pill">Login</a>
+  <!-- No targets yet either: add an href to each once there is something
+       behind it. -->
+  <div class="site-aktionen">
+    <a class="pill pill--support">Support</a>
+    <a class="pill">Login</a>
+  </div>
 </header>
 
 <main class="rechtliches">
@@ -72,9 +76,17 @@
 
 <footer class="site-footer">
   <p>© 2026 Turmberg Software GmbH</p>
+  <!-- The company is made up for a role-play in a study project. This notice
+       says so on every page and must stay as long as the site is online. It
+       runs through the footer once as a news ticker; after that the short
+       version stays (see .hinweis in style.css). -->
+  <p class="hinweis"><span class="hinweis__lauf">+++ <strong>Wussten Sie schon?</strong> Die Turmberg Software GmbH gibt es überhaupt nicht. Sie ist ein rein fiktives Unternehmen, das im Rahmen eines Rollenspiels in einem Studienprojekt erfunden wurde. +++ Alle Angaben, Leistungen und Auszeichnungen auf dieser Website sind frei erfunden, auch die Goldene Zinne. +++ Der Turmberg ist allerdings echt. +++</span><span class="hinweis__fest" aria-hidden="true"><strong>Hinweis:</strong> Turmberg Software ist ein fiktives Unternehmen aus einem Rollenspiel in einem Studienprojekt.</span></p>
+  <!-- Switched off for now, like the navigation: the two pages still exist,
+       but nothing links to them. To bring them back, give the entries
+       href="impressum.html" and href="datenschutz.html" again. -->
   <nav aria-label="Rechtliches">
-    <a href="impressum.html" aria-current="page">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
+    <a aria-current="page">Impressum</a>
+    <a>Datenschutz</a>
   </nav>
 </footer>
 

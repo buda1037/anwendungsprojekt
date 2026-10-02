@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Turmberg Software – Software mit Weitblick</title>
-<meta name="description" content="Ein junges Team aus Karlsruhe-Durlach. Wir bauen Software, die verlässlich läuft, einfach bleibt und Spaß macht.">
+<meta name="description" content="Ein eingespieltes Team aus Karlsruhe-Durlach. Wir beraten und unterstützen Sie bei Architektur, Entwicklung und Test Ihrer nachhaltigen Softwarelösung.">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -33,8 +33,12 @@
     <a>Team</a>
     <a>Karriere</a>
   </nav>
-  <!-- No target yet either: add an href once there is something to log in to. -->
-  <a class="pill">Login</a>
+  <!-- No targets yet either: add an href to each once there is something
+       behind it. -->
+  <div class="site-aktionen">
+    <a class="pill pill--support">Support</a>
+    <a class="pill">Login</a>
+  </div>
 </header>
 
 <main class="start">
@@ -43,6 +47,38 @@
     <div class="hero__card">
       <div class="hero__content">
         <h1 class="hero__title" id="hero-titel">Software mit Weitblick.</h1>
+        <!-- EXPERIMENT: lead text and two actions under the tagline. Neither
+             action has a target yet: add an href once there is one. -->
+        <p class="hero__lead">Sie suchen einen verlässlichen Partner für Ihr nächstes Projekt?<br>Unser agiles Team aus Karlsruhe-Durlach berät und unterstützt Sie gerne bei Architektur, Entwicklung und Test Ihrer nachhaltigen Softwarelösung.</p>
+        <div class="hero__aktionen">
+          <a class="knopf"><svg class="symbol" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4 H13.5 V13.5 H2.5 Z M2.5 7 H13.5 M5.5 2 V5 M10.5 2 V5"/></svg> Termin vereinbaren</a>
+          <a class="textlink">Projekte ansehen <svg class="pfeil" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8 H13 M9 4 L13 8 L9 12"/></svg></a>
+        </div>
+      </div>
+
+      <!-- EXPERIMENT: awards in the sky above the panel. All three are made up,
+           like the company: the names quote our own tower, river and tagline. -->
+      <svg class="vorrat" aria-hidden="true"><symbol id="lorbeer" viewBox="0 0 22 48"><ellipse cx="14.3" cy="42.6" rx="2.1" ry="5" transform="rotate(-63 14.3 42.6)"/><ellipse cx="8.3" cy="34.6" rx="2.1" ry="5" transform="rotate(-40 8.3 34.6)"/><ellipse cx="6.0" cy="24.9" rx="2.1" ry="5" transform="rotate(-17 6.0 24.9)"/><ellipse cx="7.7" cy="15.0" rx="2.1" ry="5" transform="rotate(6 7.7 15.0)"/><ellipse cx="13.0" cy="6.6" rx="2.1" ry="5" transform="rotate(29 13.0 6.6)"/><path d="M17.5 41.3 A22 22 0 0 1 16.3 7.7"/></symbol></svg>
+      <ul class="preise" aria-label="Auszeichnungen">
+        <li class="preis"><svg class="lorbeer" aria-hidden="true"><use href="#lorbeer"/></svg><span class="preis__text"><strong>Goldene Zinne</strong> <span>Newcomer des Jahres 2024</span></span><svg class="lorbeer lorbeer--rechts" aria-hidden="true"><use href="#lorbeer"/></svg></li>
+        <li class="preis"><svg class="lorbeer" aria-hidden="true"><use href="#lorbeer"/></svg><span class="preis__text"><strong>Pfinz Valley Award</strong> <span>Beste Neugründung 2025</span></span><svg class="lorbeer lorbeer--rechts" aria-hidden="true"><use href="#lorbeer"/></svg></li>
+        <li class="preis"><svg class="lorbeer" aria-hidden="true"><use href="#lorbeer"/></svg><span class="preis__text"><strong>Durlacher Weitblick-Preis</strong> <span>Nachhaltige Software 2026</span></span><svg class="lorbeer lorbeer--rechts" aria-hidden="true"><use href="#lorbeer"/></svg></li>
+      </ul>
+
+      <!-- EXPERIMENT: a glass panel with a short enquiry form. It sends nothing
+           yet: replace the onsubmit once there is somewhere to send it to. -->
+      <div class="glas-platz">
+        <section class="glas" aria-labelledby="anfrage-titel">
+          <h2 class="glas__titel" id="anfrage-titel">Noch Wünsche offen?</h2>
+          <p class="glas__hinweis">Beschreiben Sie uns völlig unverbindlich Ihr Anliegen und wir melden uns so bald wie möglich bei Ihnen.</p>
+          <form class="anfrage" onsubmit="return false">
+            <label for="anfrage-idee">Ihre Idee</label>
+            <textarea id="anfrage-idee" name="idee" placeholder="Wir möchten …"></textarea>
+            <label for="anfrage-mail">Ihre E-Mail</label>
+            <input id="anfrage-mail" name="email" type="email" autocomplete="email">
+            <button class="knopf" type="submit">Idee absenden</button>
+          </form>
+        </section>
       </div>
 
       <div class="horizon" aria-hidden="true">
@@ -60,9 +96,17 @@
 
 <footer class="site-footer">
   <p>© 2026 Turmberg Software GmbH</p>
+  <!-- The company is made up for a role-play in a study project. This notice
+       says so on every page and must stay as long as the site is online. It
+       runs through the footer once as a news ticker; after that the short
+       version stays (see .hinweis in style.css). -->
+  <p class="hinweis"><span class="hinweis__lauf">+++ <strong>Wussten Sie schon?</strong> Die Turmberg Software GmbH gibt es überhaupt nicht. Sie ist ein rein fiktives Unternehmen, das im Rahmen eines Rollenspiels in einem Studienprojekt erfunden wurde. +++ Alle Angaben, Leistungen und Auszeichnungen auf dieser Website sind frei erfunden, auch die Goldene Zinne. +++ Der Turmberg ist allerdings echt. +++</span><span class="hinweis__fest" aria-hidden="true"><strong>Hinweis:</strong> Turmberg Software ist ein fiktives Unternehmen aus einem Rollenspiel in einem Studienprojekt.</span></p>
+  <!-- Switched off for now, like the navigation: the two pages still exist,
+       but nothing links to them. To bring them back, give the entries
+       href="impressum.html" and href="datenschutz.html" again. -->
   <nav aria-label="Rechtliches">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
+    <a>Impressum</a>
+    <a>Datenschutz</a>
   </nav>
 </footer>
 

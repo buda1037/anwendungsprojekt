@@ -719,7 +719,7 @@ a:focus-visible {
   justify-self: start;
   width: max-content;
   padding-left: 100%;
-  animation: lauf 36s linear 10s 1 forwards;
+  animation: lauf 36s linear 15s 1 forwards;
 }
 @keyframes lauf {
   to { transform: translateX(-100%); }
@@ -735,7 +735,7 @@ a:focus-visible {
   text-align: center;
   text-wrap: balance;
   opacity: 0;
-  animation: zeigen 0.8s ease 46s 1 forwards;
+  animation: zeigen 0.8s ease 51s 1 forwards;
 }
 @keyframes zeigen {
   to { opacity: 1; }

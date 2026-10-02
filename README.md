@@ -1,7 +1,7 @@
 # turmbergsoftware.de
 
 The website of Turmberg Software: plain HTML and CSS plus two small scripts, one for
-the view behind the hero text and one for the paper planes (currently switched off).
+the view behind the hero text and one for the paper plane that turns up after 55 seconds.
 No framework, no dependencies, no images or video, no build step.
 Every push to `main` is published to GitHub Pages by `.github/workflows/deploy.yml`.
 
@@ -22,7 +22,7 @@ site/                    everything in here is published
   apple-touch-icon.png
   assets/style.css       shared styles, brand colors as CSS variables
   assets/aussicht.js     the view from the Turmberg behind the hero text
-  assets/flieger.js      the paper planes on the landing page
+  assets/flieger.js      the paper plane on the landing page
   assets/fonts/          DM Sans + Space Grotesk, self-hosted (SIL OFL 1.1)
 .github/workflows/
   deploy.yml             uploads site/ and deploys it to GitHub Pages
@@ -99,14 +99,17 @@ The note in each footer says how to bring the links back.
   The colors per sun elevation are in `SKIES` at the top of the script; blur and
   grain strength are `filter: blur()` at `.aussicht` and `opacity` at
   `.aussicht__korn`.
-- **Paper planes:** `assets/flieger.js`. How many there are, where they circle, how
-  big and how fast they are is in `LAYOUTS` at the top; the delays and the throw
-  limits are the constants right below. Visitors with reduced motion enabled get no
-  planes. They are switched off: the script tag in `index.html` is commented out.
+- **Paper plane:** `assets/flieger.js`. One plane glides in after a visitor has
+  spent 55 seconds on the landing page. Thrown off screen, it is gone for good.
+  How many planes there are (one `homes` entry each), where they circle, how big
+  and how fast they are is in `LAYOUTS` at the top; the delay (`FIRST_DELAY`) and
+  the throw limits are the constants right below. To see the plane without
+  waiting, add `?plane=3` to the address (seconds). Visitors with reduced motion
+  enabled get no plane.
 - **Side margin:** `--innen` at the top of `assets/style.css` is how far everything
   stands in from the left and right edges of the window.
-- **Awards and enquiry form:** both are marked EXPERIMENT in `index.html` and
-  `assets/style.css`. The form floats over the view on the right; the awards show
+- **Awards and enquiry form:** the "Hero" sections of `assets/style.css`. The form
+  floats over the view on the right (`.glas-platz` sets where); the awards show
   above it only in windows of at least 1280 by 800 pixels.
 - **The notice in the footer:** `.hinweis` in `assets/style.css`. The ticker's delay
   and duration are in the `animation` of `.hinweis__lauf`; the short notice that

@@ -12,9 +12,7 @@
 <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/aussicht.js" defer></script>
-<!-- Paper planes switched off. Remove this comment to bring them back.
 <script src="assets/flieger.js" defer></script>
--->
 </head>
 <body>
 
@@ -47,8 +45,7 @@
     <div class="hero__card">
       <div class="hero__content">
         <h1 class="hero__title" id="hero-titel">Software mit Weitblick.</h1>
-        <!-- EXPERIMENT: lead text and two actions under the tagline. Neither
-             action has a target yet: add an href once there is one. -->
+        <!-- Neither action has a target yet: add an href once there is one. -->
         <p class="hero__lead">Sie suchen einen verlässlichen Partner für Ihr nächstes Projekt?<br>Unser agiles Team aus Karlsruhe-Durlach berät und unterstützt Sie gerne bei Architektur, Entwicklung und Test Ihrer nachhaltigen Softwarelösung.</p>
         <div class="hero__aktionen">
           <a class="knopf"><svg class="symbol" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4 H13.5 V13.5 H2.5 Z M2.5 7 H13.5 M5.5 2 V5 M10.5 2 V5"/></svg> Termin vereinbaren</a>
@@ -56,8 +53,8 @@
         </div>
       </div>
 
-      <!-- EXPERIMENT: awards in the sky above the panel. All three are made up,
-           like the company: the names quote our own tower, river and tagline. -->
+      <!-- Awards in the sky above the form. All three are made up, like the
+           company: the names quote our own tower, river and tagline. -->
       <svg class="vorrat" aria-hidden="true"><symbol id="lorbeer" viewBox="0 0 22 48"><ellipse cx="14.3" cy="42.6" rx="2.1" ry="5" transform="rotate(-63 14.3 42.6)"/><ellipse cx="8.3" cy="34.6" rx="2.1" ry="5" transform="rotate(-40 8.3 34.6)"/><ellipse cx="6.0" cy="24.9" rx="2.1" ry="5" transform="rotate(-17 6.0 24.9)"/><ellipse cx="7.7" cy="15.0" rx="2.1" ry="5" transform="rotate(6 7.7 15.0)"/><ellipse cx="13.0" cy="6.6" rx="2.1" ry="5" transform="rotate(29 13.0 6.6)"/><path d="M17.5 41.3 A22 22 0 0 1 16.3 7.7"/></symbol></svg>
       <ul class="preise" aria-label="Auszeichnungen">
         <li class="preis"><svg class="lorbeer" aria-hidden="true"><use href="#lorbeer"/></svg><span class="preis__text"><strong>Goldene Zinne</strong> <span>Newcomer des Jahres 2024</span></span><svg class="lorbeer lorbeer--rechts" aria-hidden="true"><use href="#lorbeer"/></svg></li>
@@ -65,18 +62,18 @@
         <li class="preis"><svg class="lorbeer" aria-hidden="true"><use href="#lorbeer"/></svg><span class="preis__text"><strong>Durlacher Weitblick-Preis</strong> <span>Nachhaltige Software 2026</span></span><svg class="lorbeer lorbeer--rechts" aria-hidden="true"><use href="#lorbeer"/></svg></li>
       </ul>
 
-      <!-- EXPERIMENT: a glass panel with a short enquiry form. It sends nothing
-           yet: replace the onsubmit once there is somewhere to send it to. -->
+      <!-- A short enquiry form in a glass panel. It sends nothing yet: replace
+           the onsubmit once there is somewhere to send it to. -->
       <div class="glas-platz">
         <section class="glas" aria-labelledby="anfrage-titel">
-          <h2 class="glas__titel" id="anfrage-titel">Noch Wünsche offen?</h2>
-          <p class="glas__hinweis">Beschreiben Sie uns völlig unverbindlich Ihr Anliegen und wir melden uns so bald wie möglich bei Ihnen.</p>
+          <h2 class="glas__titel" id="anfrage-titel">Noch offene Fragen?</h2>
+          <p class="glas__hinweis">Beschreiben Sie uns Ihr Anliegen und wir melden uns so zeitnah wie möglich bei Ihnen.</p>
           <form class="anfrage" onsubmit="return false">
-            <label for="anfrage-idee">Ihre Idee</label>
-            <textarea id="anfrage-idee" name="idee" placeholder="Wir möchten …"></textarea>
+            <label for="anfrage-anliegen">Ihr Anliegen</label>
+            <textarea id="anfrage-anliegen" name="anliegen" placeholder="Wir möchten …"></textarea>
             <label for="anfrage-mail">Ihre E-Mail</label>
             <input id="anfrage-mail" name="email" type="email" autocomplete="email">
-            <button class="knopf" type="submit">Idee absenden</button>
+            <button class="knopf" type="submit">Anliegen übermitteln</button>
           </form>
         </section>
       </div>

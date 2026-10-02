@@ -130,9 +130,9 @@ a:focus-visible {
 }
 .site-nav a:hover { color: var(--pfinz); }
 
-/* Too narrow for one row: the navigation moves below brand and pill, and
-   navigation and pill go back to a smaller size so both rows still fit on
-   a narrow phone. */
+/* Too narrow for one row: the navigation moves below brand and pills, and
+   navigation and pills go back to a smaller size so both rows still fit
+   on a narrow phone. */
 @media (max-width: 960px) {
   .site-header { grid-template-columns: 1fr auto; }
   .site-nav {
@@ -358,6 +358,299 @@ a:focus-visible {
   background: radial-gradient(closest-side, rgb(22 32 43 / 0.16), transparent);
 }
 
+/* ---------- Hero: lead text and actions under the tagline ---------- */
+
+.hero__lead {
+  margin: 0;
+  max-width: 32em; /* just wide enough for the opening question on one line */
+  font-size: clamp(1rem, min(1.4vw, 2.8vh), 1.125rem);
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.92);
+  text-wrap: pretty;
+}
+
+.hero__aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 26px;
+  margin-top: clamp(2px, 1vh, 10px);
+}
+
+/* The main action: a solid white button on the view. */
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px 0 22px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  box-shadow: 0 6px 20px rgb(8 12 30 / 0.25);
+  color: var(--schiefer);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  text-shadow: none;
+}
+.knopf:hover {
+  background: var(--nebel);
+  color: var(--schiefer);
+}
+
+/* The small line icon in the button. */
+.symbol {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+.symbol path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* The second action: plain text with an arrow. */
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.textlink:hover { color: #FFFFFF; }
+
+/* ---------- Hero: enquiry form in a glass panel ---------- */
+
+/* The panel's place: a column in the sky on the right, from the tagline's
+   top edge down to just above the hill. It lies over the card, not in its
+   flow, so it does not change the card's height and the page still fits on
+   one screen. The panel sits towards the bottom right of it: the free
+   height is shared 2 to 3 above and below, and where there is none (low
+   windows) the panel simply starts at the top. */
+.glas-platz {
+  --glas-breite: min(460px, 36vw);
+  position: absolute;
+  top: var(--oben);
+  bottom: 60px; /* the hill's height below the panel's left edge, and a little air */
+  right: var(--innen); /* as far from the right edge as the tagline is from the left */
+  width: var(--glas-breite);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.glas-platz::before { content: ""; flex: 2; }
+.glas-platz::after { content: ""; flex: 3; }
+
+/* A pane of frosted glass: the view behind it shows through, blurred
+   further and slightly darkened so the white text on it stays legible over
+   the bright horizon. */
+.glas {
+  --takt: clamp(8px, 4vh - 16px, 18px); /* space between the form's parts, tighter in low windows */
+  flex: none;
+  pointer-events: auto;
+  padding: clamp(14px, 5vh - 16px, 26px) clamp(18px, 2vw, 26px);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 16px;
+  background: rgb(22 32 43 / 0.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  backdrop-filter: blur(18px) saturate(1.3);
+}
+
+.glas__titel {
+  margin: 0;
+  font-size: clamp(1.375rem, 3.6vh, 1.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.glas__hinweis {
+  margin: 8px 0 var(--takt);
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgb(255 255 255 / 0.88);
+  text-wrap: pretty;
+}
+
+/* The enquiry form: two white fields and the button, one under the other. */
+.anfrage {
+  display: flex;
+  flex-direction: column;
+}
+.anfrage label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.anfrage textarea,
+.anfrage input {
+  width: 100%;
+  margin: 0 0 var(--takt);
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.94);
+  color: var(--schiefer);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.anfrage textarea {
+  height: clamp(56px, 22vh - 76px, 104px);
+  resize: none; /* the panel must not grow down onto the hill */
+}
+.anfrage input { height: 46px; }
+.anfrage ::placeholder {
+  color: var(--grau);
+  opacity: 1;
+}
+.anfrage textarea:focus-visible,
+.anfrage input:focus-visible,
+.anfrage .knopf:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+.anfrage .knopf {
+  justify-content: center;
+  margin-top: 4px;
+  padding: 0 22px;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* In a low window beside the tagline, the form's parts shrink a little so
+   the panel ends above the hill. */
+@media (min-width: 961px) and (max-height: 700px) {
+  .glas__hinweis { font-size: 13px; }
+  .anfrage label { margin-bottom: 4px; }
+  .anfrage textarea { height: 48px; }
+  .anfrage input { height: 40px; }
+  .anfrage .knopf { min-height: 42px; }
+}
+
+/* The arrow of the text link under the tagline. */
+.pfeil {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.15s;
+}
+.pfeil path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.textlink:hover .pfeil { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .pfeil { transition: none; }
+}
+
+/* No room beside the tagline: the panel goes below it, in the card's flow. */
+@media (max-width: 960px) {
+  .hero__content { margin-bottom: 0; }
+  .glas-platz {
+    position: static;
+    display: block;
+    align-self: stretch;
+    width: auto;
+    margin: 24px 0 auto;
+  }
+  .glas-platz::before,
+  .glas-platz::after { content: none; }
+}
+
+/* ---------- Hero: awards ---------- */
+
+/* Holds the laurel drawing that every award uses twice; shows nothing itself. */
+.vorrat {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* A row of awards in the sky, level with the tagline and ending at the
+   page's right margin. Like the panel it lies over the card, not in its
+   flow. */
+.preise {
+  position: absolute;
+  top: calc(var(--oben) + 4px);
+  right: var(--innen);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 16px clamp(20px, 2.2vw, 40px);
+  text-shadow: 0 1px 22px rgb(8 12 30 / 0.45);
+}
+
+/* One award: its name and what it was for, between two laurel branches. */
+.preis {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: center;
+  white-space: nowrap;
+}
+.preis__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.preis__text strong {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.preis__text span {
+  font-size: 13px;
+  line-height: 1.2;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.lorbeer {
+  flex: none;
+  width: 22px;
+  height: 48px;
+  fill: #FFFFFF;
+  opacity: 0.9;
+}
+.lorbeer path {
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 1.2;
+}
+.lorbeer--rechts { transform: scaleX(-1); }
+
+/* With the awards above it, the panel's place begins below them. */
+@media (min-width: 1280px) and (min-height: 800px) {
+  .glas-platz { top: calc(var(--oben) + 4px + 48px + 24px); }
+}
+
+/* Beside the tagline there is room for the awards only in a wide window,
+   and above the panel only in a tall one. Elsewhere they are left out. */
+@media (min-width: 961px) and (max-width: 1279.98px), (min-width: 961px) and (max-height: 799.98px) {
+  .preise { display: none; }
+}
+
+/* Where the panel goes below the text, the awards go between the two.
+   They stay positioned (relative, not static): the view's canvases are
+   positioned too and would otherwise be painted over the award names. */
+@media (max-width: 960px) {
+  .preise {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -517,303 +810,10 @@ a:focus-visible {
   color: var(--grau);
 }
 
-/* ---------- Lead text and actions under the tagline (EXPERIMENT) ---------- */
-
-.hero__lead {
-  margin: 0;
-  max-width: 32em; /* just wide enough for the opening question on one line */
-  font-size: clamp(1rem, min(1.4vw, 2.8vh), 1.125rem);
-  line-height: 1.55;
-  color: rgb(255 255 255 / 0.92);
-  text-wrap: pretty;
-}
-
-.hero__aktionen {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 26px;
-  margin-top: clamp(2px, 1vh, 10px);
-}
-
-/* The main action: a solid white button on the view. */
-.knopf {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 26px 0 22px;
-  border-radius: 999px;
-  background: #FFFFFF;
-  box-shadow: 0 6px 20px rgb(8 12 30 / 0.25);
-  color: var(--schiefer);
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  text-shadow: none;
-}
-.knopf:hover {
-  background: var(--nebel);
-  color: var(--schiefer);
-}
-
-/* The small line icon in the button. */
-.symbol {
-  flex: none;
-  width: 16px;
-  height: 16px;
-}
-.symbol path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
-
-/* The second action: plain text with an arrow. */
-.textlink {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-}
-.textlink:hover { color: #FFFFFF; }
-
-/* ---------- Glass panel (EXPERIMENT) ---------- */
-
-/* The panel's place: a column in the sky on the right, from the tagline's
-   top edge down to just above the hill. It lies over the card, not in its
-   flow, so it does not change the card's height and the page still fits on
-   one screen. The panel sits towards the bottom right of it: the free
-   height is shared 2 to 3 above and below, and where there is none (low
-   windows) the panel simply starts at the top. */
-.glas-platz {
-  --glas-breite: min(460px, 36vw);
-  position: absolute;
-  top: var(--oben);
-  bottom: 60px; /* the hill's height below the panel's left edge, and a little air */
-  right: var(--innen); /* as far from the right edge as the tagline is from the left */
-  width: var(--glas-breite);
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-}
-.glas-platz::before { content: ""; flex: 2; }
-.glas-platz::after { content: ""; flex: 3; }
-
-/* A pane of frosted glass: the view behind it shows through, blurred
-   further and slightly darkened so the white text on it stays legible over
-   the bright horizon. */
-.glas {
-  --takt: clamp(8px, 4vh - 16px, 18px); /* space between the form's parts, tighter in low windows */
-  flex: none;
-  pointer-events: auto;
-  padding: clamp(14px, 5vh - 16px, 26px) clamp(18px, 2vw, 26px);
-  border: 1px solid rgb(255 255 255 / 0.2);
-  border-radius: 16px;
-  background: rgb(22 32 43 / 0.3);
-  -webkit-backdrop-filter: blur(18px) saturate(1.3);
-  backdrop-filter: blur(18px) saturate(1.3);
-}
-
-.glas__titel {
-  margin: 0;
-  font-size: clamp(1.375rem, 3.6vh, 1.75rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.glas__hinweis {
-  margin: 8px 0 var(--takt);
-  font-size: 14px;
-  line-height: 1.45;
-  color: rgb(255 255 255 / 0.88);
-  text-wrap: pretty;
-}
-
-/* The enquiry form: two white fields and the button, one under the other. */
-.anfrage {
-  display: flex;
-  flex-direction: column;
-}
-.anfrage label {
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.anfrage textarea,
-.anfrage input {
-  width: 100%;
-  margin: 0 0 var(--takt);
-  padding: 10px 14px;
-  border: 0;
-  border-radius: 12px;
-  background: rgb(255 255 255 / 0.94);
-  color: var(--schiefer);
-  font: inherit;
-  font-size: 16px;
-  line-height: 1.45;
-}
-.anfrage textarea {
-  height: clamp(56px, 22vh - 76px, 104px);
-  resize: none; /* the panel must not grow down onto the hill */
-}
-.anfrage input { height: 46px; }
-.anfrage ::placeholder {
-  color: var(--grau);
-  opacity: 1;
-}
-.anfrage textarea:focus-visible,
-.anfrage input:focus-visible,
-.anfrage .knopf:focus-visible {
-  outline: 2px solid #FFFFFF;
-  outline-offset: 2px;
-}
-.anfrage .knopf {
-  justify-content: center;
-  margin-top: 4px;
-  padding: 0 22px;
-  border: 0;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-/* In a low window beside the tagline, the form's parts shrink a little so
-   the panel ends above the hill. */
-@media (min-width: 961px) and (max-height: 700px) {
-  .glas__hinweis { font-size: 13px; }
-  .anfrage label { margin-bottom: 4px; }
-  .anfrage textarea { height: 48px; }
-  .anfrage input { height: 40px; }
-  .anfrage .knopf { min-height: 42px; }
-}
-
-/* The arrow of the text link under the tagline. */
-.pfeil {
-  flex: none;
-  width: 16px;
-  height: 16px;
-  transition: transform 0.15s;
-}
-.pfeil path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
-.textlink:hover .pfeil { transform: translateX(3px); }
-@media (prefers-reduced-motion: reduce) {
-  .pfeil { transition: none; }
-}
-
-/* No room beside the tagline: the panel goes below it, in the card's flow. */
-@media (max-width: 960px) {
-  .hero__content { margin-bottom: 0; }
-  .glas-platz {
-    position: static;
-    display: block;
-    align-self: stretch;
-    width: auto;
-    margin: 24px 0 auto;
-  }
-  .glas-platz::before,
-  .glas-platz::after { content: none; }
-}
-
-/* ---------- Awards (EXPERIMENT) ---------- */
-
-/* Holds the laurel drawing that every award uses twice; shows nothing itself. */
-.vorrat {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-/* A row of awards in the sky, level with the tagline and ending at the
-   page's right margin. Like the panel it lies over the card, not in its
-   flow. */
-.preise {
-  position: absolute;
-  top: calc(var(--oben) + 4px);
-  right: var(--innen);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  gap: 16px clamp(20px, 2.2vw, 40px);
-  text-shadow: 0 1px 22px rgb(8 12 30 / 0.45);
-}
-
-/* One award: its name and what it was for, between two laurel branches. */
-.preis {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  text-align: center;
-  white-space: nowrap;
-}
-.preis__text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.preis__text strong {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-.preis__text span {
-  font-size: 13px;
-  line-height: 1.2;
-  color: rgb(255 255 255 / 0.82);
-}
-
-.lorbeer {
-  flex: none;
-  width: 22px;
-  height: 48px;
-  fill: #FFFFFF;
-  opacity: 0.9;
-}
-.lorbeer path {
-  fill: none;
-  stroke: #FFFFFF;
-  stroke-width: 1.2;
-}
-.lorbeer--rechts { transform: scaleX(-1); }
-
-/* With the awards above it, the panel's place begins below them. */
-@media (min-width: 1280px) and (min-height: 800px) {
-  .glas-platz { top: calc(var(--oben) + 4px + 48px + 24px); }
-}
-
-/* Beside the tagline there is room for the awards only in a wide window,
-   and above the panel only in a tall one. Elsewhere they are left out. */
-@media (min-width: 961px) and (max-width: 1279.98px), (min-width: 961px) and (max-height: 799.98px) {
-  .preise { display: none; }
-}
-
-/* Where the panel goes below the text, the awards go between the two.
-   They stay positioned (relative, not static): the view's canvases are
-   positioned too and would otherwise be painted over the award names. */
-@media (max-width: 960px) {
-  .preise {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-}
-
-/* ---------- Paper planes (drawn and moved by assets/flieger.js) ---------- */
+/* ---------- Paper plane (drawn and moved by assets/flieger.js) ---------- */
 
 /* A layer over the whole window. It lets every click through; only the
-   planes' own grab areas react to the pointer. */
+   plane's own grab area reacts to the pointer. */
 .flieger {
   position: fixed;
   inset: 0;

@@ -1,9 +1,10 @@
-/* Turmberg Software – paper planes on the landing page.
+/* Turmberg Software – the paper plane on the landing page.
 
-   A few small paper planes glide in from the left and right shortly after
-   the page has loaded and then circle lazily beside the hero text. Each one
-   can be grabbed with the mouse or a finger and thrown: a throw that carries
-   it off screen removes it, and a new one glides in a little later.
+   A visitor who stays on the page for 55 seconds gets company: one small
+   paper plane glides in from the side and then circles lazily in the sky
+   between the hero text and the form. It can be grabbed with the mouse or
+   a finger and thrown: a throw that carries it off screen removes it for
+   good. No second plane follows.
 
    No library, no build step. Every plane is a tiny 3D model (three
    triangles) that is rotated, projected and flat-shaded here and drawn as an
@@ -46,24 +47,28 @@
 
   /* ---------- Where the planes live ---------- */
 
-  // homes are fractions of the hero card. They keep clear of the tagline in
-  // the upper left corner and of the tower in the middle of the bottom edge.
-  // unit is the model's size in px, orbit the radius of the circles, speed
-  // the cruise speed in px per second.
+  // homes are fractions of the hero card, one per plane: add entries for
+  // more planes. On a wide card the plane circles in the open sky between
+  // the hero text and the form, above the tower; on a narrow one beside the
+  // tagline, clear of the form's fields. unit is the model's size in px,
+  // orbit the radius of the circles, speed the cruise speed in px per second.
   const LAYOUTS = {
     wide: {
       unit: 26, orbit: 55, speed: 52,
-      homes: [[0.10, 0.50], [0.88, 0.20], [0.22, 0.70], [0.82, 0.50], [0.60, 0.24], [0.93, 0.72]],
+      homes: [[0.47, 0.50]],
     },
     narrow: {
       unit: 17, orbit: 22, speed: 30,
-      homes: [[0.20, 0.50], [0.82, 0.40], [0.15, 0.78], [0.85, 0.74]],
+      homes: [[0.84, 0.07]],
     },
   };
   const SIZES = [1, 0.85, 0.8, 1.1, 1.15, 0.9];
 
-  const FIRST_DELAY = 0.9; // seconds until the first plane appears
-  const STAGGER = 0.35; // seconds between planes
+  // Seconds on the page until the plane appears. Only time with the page in
+  // view counts. To see the plane sooner, add ?plane=SECONDS to the address.
+  const preview = parseFloat(new URLSearchParams(location.search).get('plane'));
+  const FIRST_DELAY = preview >= 0 ? preview : 55;
+  const STAGGER = 0.35; // seconds between planes, if there are several
   const MAX_THROW = 3000; // px per second
   const GLIDE_DRAG = 0.45; // share of speed a thrown plane loses per second
   const SETTLE_SPEED = 120; // a thrown plane slower than this starts circling again
@@ -106,7 +111,7 @@
       colors: i % 3 === 1 ? ACCENT : PAPER,
       turn: i % 2 ? 1 : -1, // circling direction
       phase: i * 1.7,
-      state: 'waiting', // waiting | circling | held | gliding
+      state: 'waiting', // waiting | circling | held | gliding | gone
       wait: FIRST_DELAY + i * STAGGER,
       home: null, // set when the visitor drops the plane somewhere
       x: 0, y: 0, heading: 0, speed: 0, vx: 0, vy: 0, bank: 0, lift: 0,
@@ -191,6 +196,7 @@
   function step(plane, dt, now) {
     const ease = (rate) => 1 - Math.exp(-rate * dt);
 
+    if (plane.state === 'gone') return;
     if (plane.state === 'waiting') {
       plane.wait -= dt;
       if (plane.wait <= 0) enter(plane);
@@ -227,11 +233,9 @@
       const margin = BOX;
       if (plane.x < -margin || plane.x > innerWidth + margin
           || plane.y < -margin || plane.y > innerHeight + margin) {
-        // Thrown away: a fresh plane comes in at the original spot later.
-        plane.state = 'waiting';
-        plane.wait = 4 + Math.random() * 3;
-        plane.home = null;
-        plane.svg.style.visibility = 'hidden';
+        // Thrown away: that was the only one, and it does not come back.
+        plane.state = 'gone';
+        plane.svg.remove();
       } else if (v < SETTLE_SPEED) {
         // Too slow to leave: circle where it ended up, kept inside the card.
         const inset = 40;
@@ -268,7 +272,7 @@
   /* ---------- Drawing ---------- */
 
   function draw(plane, now) {
-    if (plane.state === 'waiting') return;
+    if (plane.state === 'waiting' || plane.state === 'gone') return;
 
     const size = layout.unit * plane.size * (1 + 0.12 * plane.lift);
     const roll = plane.bank + Math.sin(now * 1.3 + plane.phase) * 0.06;
@@ -318,7 +322,8 @@
       step(plane, dt, now);
       draw(plane, now);
     }
-    requestAnimationFrame(frame);
+    // Nothing left to move once every plane has been thrown away.
+    if (planes.some((plane) => plane.state !== 'gone')) requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 

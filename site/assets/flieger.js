@@ -49,9 +49,10 @@
 
   // homes are fractions of the hero card, one per plane: add entries for
   // more planes. On a wide card the plane circles in the open sky between
-  // the hero text and the form, above the tower; on a narrow one beside the
-  // tagline, clear of the form's fields. unit is the model's size in px,
-  // orbit the radius of the circles, speed the cruise speed in px per second.
+  // the hero text and the form, above the tower; on a narrow one in the top
+  // right corner, clear of the tagline and the form's fields. unit is the
+  // model's size in px, orbit the radius of the circles, speed the cruise
+  // speed in px per second.
   const LAYOUTS = {
     wide: {
       unit: 26, orbit: 55, speed: 52,
@@ -59,7 +60,7 @@
     },
     narrow: {
       unit: 17, orbit: 22, speed: 30,
-      homes: [[0.84, 0.07]],
+      homes: [[0.88, 0.03]],
     },
   };
   const SIZES = [1, 0.85, 0.8, 1.1, 1.15, 0.9];

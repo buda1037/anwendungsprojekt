@@ -143,9 +143,12 @@ a:focus-visible {
   .site-header .pill { font-size: 15px; }
 }
 
-/* On a phone there is room for only one pill beside the brand. */
+/* On a phone the pills are left out, and the brand stands centered above
+   the navigation. */
 @media (max-width: 560px) {
-  .site-header .pill--support { display: none; }
+  .site-header { grid-template-columns: 1fr; }
+  .site-header .brand { justify-self: center; }
+  .site-aktionen { display: none; }
 }
 
 .brand {
@@ -157,8 +160,7 @@ a:focus-visible {
   text-decoration: none;
 }
 .brand:hover { color: var(--schiefer); }
-/* Mark, wordmark and pill shrink a little on narrow phones so that brand
-   and pill still fit side by side at 320px. */
+/* Mark and wordmark shrink a little on narrow phones. */
 .brand .mark {
   flex: none;
   width: clamp(27px, 8.5vw, 42px);
@@ -183,7 +185,7 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 clamp(14px, 4.5vw, 22px);
+  padding: 0 22px;
   border: 1px solid var(--rand);
   border-radius: 999px;
   color: var(--schiefer);
@@ -651,6 +653,20 @@ a:focus-visible {
   }
 }
 
+/* ---------- Hero on a phone ---------- */
+
+/* Everything stands centered in one column: tagline, text, actions, awards
+   and the form's headings. What is typed into the form stays left-aligned. */
+@media (max-width: 560px) {
+  .hero__card {
+    align-items: center;
+    text-align: center;
+  }
+  .hero__content { align-items: center; }
+  .hero__aktionen,
+  .preise { justify-content: center; }
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -754,10 +770,14 @@ a:focus-visible {
     grid-row: 1;
   }
 }
-/* On a phone copyright and links no longer fit side by side. */
-@media (max-width: 480px) {
-  .site-footer { grid-template-columns: 1fr; }
-  .site-footer nav { justify-self: start; }
+/* On a phone copyright and links stand centered, one under the other. */
+@media (max-width: 560px) {
+  .site-footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .site-footer nav { justify-self: center; }
+  .hinweis { justify-self: stretch; }
 }
 
 .site-footer a {
